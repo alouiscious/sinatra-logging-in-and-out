@@ -2,11 +2,19 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>title</title>
+    <title>Online FlatBanking</title>
     <link rel="stylesheet" href="stylesheets/bootstrap.css" type="text/css">  
   </head>
   <body id="page-top">
-    
+    <% if Helpers.is_logged_in?(session) %>
+      binding.pry
+      <h1> Welcome <%= @Helpers.active_user(session).username %> !</h1>
+      <h3> Your Balance: <%= @Helpers.active_user(session).balance %></h3>
+        <h3><a href="/logout">Log Out</a></h3>
+    <% else %>
+      <%= redirect to '/index' %>
+    <% end %>
+      
 
   </body>
 </html>
